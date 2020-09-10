@@ -18,7 +18,7 @@ class MapsAddress extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->googleKey();
+        $this->googleKey()->zoom(10)->center(['lat' => 52.370216, 'lng' => 4.895168]);
     }
 
     /**
@@ -30,6 +30,34 @@ class MapsAddress extends Field
         ]);
     }
 
+    /**
+     * @param int $zoom
+     * @return MapsAddress
+     */
+    public function zoom(int $zoom)
+    {
+        return $this->withMeta(['zoom' => $zoom]);
+    }
+
+    /**
+     * @param array $center
+     * @return MapsAddress
+     */
+    public function center(array $center) {
+        if (isset($this->meta['center'])) {
+            $center = array_merge($this->meta['center'], $center);
+        }
+
+        return $this->withMeta(['center' => $center]);
+    }
+
+    /**
+     * @param NovaRequest $request
+     * @param string $requestAttribute
+     * @param object $model
+     * @param string $attribute
+     * @return mixed|void
+     */
     public function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         $model->setAttribute($attribute, json_decode($request->$attribute, true));

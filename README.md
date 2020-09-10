@@ -47,15 +47,24 @@ protected $casts = [
 The resulting data will have this format:
 ```
 {
-    street_name: '',
-    street_number: '',
-    postal_code: '',
-    city: '',
-    country: '',
-    formatted_address: '',
-    latitude: '',
-    longitude: ''
+    street_name: string,
+    street_number: string,
+    postal_code: string,
+    city: string,
+    country: string,
+    formatted_address: string,
+    latitude: float,
+    longitude: float
 }
+```
+
+## Options
+
+You can change the default zoom and center options for the map.
+```php
+MapsAddress::make(__('Address'), 'address')
+    ->zoom(5)
+    ->center(['lat' => 55.5, 'lng' => 5.5]);
 ```
 
 
