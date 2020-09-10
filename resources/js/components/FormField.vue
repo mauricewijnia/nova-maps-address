@@ -116,8 +116,8 @@ export default {
             this.map = new google.maps.Map(
                 document.getElementById('nova-maps-address-container'),
                 {
-                    zoom: 9,
-                    center: {lat: 52.370216, lng: 4.895168},
+                    zoom: this.field.zoom,
+                    center: {lat: this.field.center.lat, lng: this.field.center.lng},
                     mapTypeControl: false,
                     streetViewControl: false,
                     fullscreenControl: false,
