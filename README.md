@@ -39,12 +39,24 @@ And in our model:
 ```php
 
 protected $casts = [
-    'location' => 'array'
+    'address' => 'array'
 ]
 
 ```
 
-
+The resulting data will have this format:
+```
+{
+    street_name: '',
+    street_number: '',
+    postal_code: '',
+    city: '',
+    country: '',
+    formatted_address: '',
+    latitude: '',
+    longitude: ''
+}
+```
 
 
 
