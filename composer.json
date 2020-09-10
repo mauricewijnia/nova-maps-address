@@ -1,0 +1,44 @@
+{
+    "name": "mauricewijnia/nova-maps-address",
+    "description": "A Laravel Nova Google Maps Field.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "google",
+        "maps"
+    ],
+    "authors": [
+        {
+        "name": "Maurice Wijnia",
+        "email": "mauricewijnia@live.nl"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/nova": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mauricewijnia\\NovaMapsAddress\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mauricewijnia\\NovaMapsAddress\\FieldServiceProvider"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
