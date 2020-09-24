@@ -1,7 +1,7 @@
 <template>
     <default-field :field="field" :errors="errors" :full-width-content="true" :show-help-text="showHelpText">
         <template slot="field">
-            <input type="hidden" name="" v-model="value">
+            <input type="hidden" name="" :value="this.value">
             <input
                 :id="field.name"
                 type="text"
@@ -9,30 +9,32 @@
                 :class="errorClasses"
                 :placeholder="field.name"
                 :value="this.formatted"
-                @input="this.onInput"
+                ref="input"
             />
-            <div id="nova-maps-address-container"></div>
+            <div id="nova-maps-address-container" ref="container"></div>
         </template>
     </default-field>
 </template>
 
 <script>
 import {FormField, HandlesValidationErrors} from 'laravel-nova'
+import Maps from '../Maps'
 
 let timeout;
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
-    props: ['resourceName', 'resourceId', 'field', 'src'],
+    props: ['resourceName', 'resourceId', 'field'],
+
     data() {
         return {
-            map: null,
-            autocomplete: null,
-            marker: null,
-            geocoder: null
+            maps: null,
+            value: null,
+            formatted: null
         }
     },
+
     methods: {
         /*
          * Set the initial, internal value for the field.
@@ -49,131 +51,27 @@ export default {
         fill(formData) {
             formData.append(this.field.attribute, this.value || '')
         },
-        onChange() {
-            const place = this.autocomplete.getPlace()
-            this.value = JSON.stringify(this.format(place))
-            this.formatted = place.formatted_address
-
-            this.setMarker(place.geometry.location)
-
-            this.map.panTo(position)
-            this.map.setZoom(12)
-        },
-        onInput(e) {
-            this.reset()
-            this.formatted = e.target.value
-        },
-        reset() {
-            this.value = null
-            if (this.marker) {
-                this.marker.setMap(null)
-            }
-        },
-        /**
-         * Format a place to the object that we will store in the database
-         */
-        format(place) {
-            return {
-                street_name: this.extract(place.address_components, 'route'),
-                street_number: this.extract(place.address_components, 'street_number'),
-                postal_code: this.extract(place.address_components, 'postal_code'),
-                city: this.extract(place.address_components, 'locality'),
-                country: this.extract(place.address_components, 'country'),
-                formatted_address: place.formatted_address,
-                latitude: place.geometry.location.lat(),
-                longitude: place.geometry.location.lng()
-            }
-        },
-        /**
-         * Extract an address component from the components array
-         */
-        extract(components, type, format = 'long_name') {
-            let result = null;
-            components.forEach((component) => {
-                if (component.types.includes(type)) {
-                    result = component[format]
-                }
-            })
-            return result;
-        },
-        setMarker(position) {
-            if (this.marker) {
-                this.marker.setMap(null)
-            }
-
-            this.marker = new google.maps.Marker({
-                position: position,
-                animation: google.maps.Animation.DROP,
-                map: this.map,
-            })
-        }
     },
-    created() {
-        this.src = `https://maps.googleapis.com/maps/api/js?key=${this.field.googleKey}&libraries=places&callback=initMap`
+    mounted() {
+        this.setInitialValue()
 
-        /**
-         * Add the Google Places API to the DOM
-         */
-        const places = document.createElement('script');
-        places.src = this.src;
-        places.defer = true;
-        places.id = 'nova-maps-address-script'
+        this.maps = new Maps({
+            input: this.$refs.input,
+            container: this.$refs.container,
+            value: this.field.value,
+            key: this.field.googleKey,
+            zoom: this.field.zoom,
+            center: this.field.center,
+            types: this.field.types
+        });
 
-        window.initMap = () => {
-            this.map = new google.maps.Map(
-                document.getElementById('nova-maps-address-container'),
-                {
-                    zoom: this.field.zoom,
-                    center: {lat: this.field.center.lat, lng: this.field.center.lng},
-                    mapTypeControl: false,
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                }
-            )
-
-            this.map.addListener('click', (event) => {
-                if (!this.geocoder) {
-                    this.geocoder = new google.maps.Geocoder
-                }
-                this.setMarker(event.latLng)
-                this.geocoder.geocode({
-                    location: event.latLng
-                }, (data, status) => {
-                    const place = data[0]
-                    if (place && status == google.maps.places.PlacesServiceStatus.OK) {
-                        this.value = JSON.stringify(this.format(place))
-                        this.formatted = place.formatted_address
-
-                        this.setMarker(place.geometry.location)
-                    }
-                })
-            })
-
-            const input = document.querySelector('.nova-maps-address-input')
-
-            this.autocomplete = new google.maps.places.Autocomplete(input, {
-                types: this.field.types
-            })
-
-            this.autocomplete.addListener('place_changed', this.onChange)
-
-            const address = this.field.value
-            if (address && address.latitude && address.longitude) {
-                this.setMarker({lat: address.latitude, lng: address.longitude})
-            }
-        };
-
-        document.head.appendChild(places);
+        this.maps.on('change', (data) => {
+            this.value = data.value
+            this.formatted = data.formatted
+        })
     },
     destroyed() {
-        /**
-         * Remove the google maps script from the DOM
-         */
-        const script = document.querySelector(`script[src="${this.src}"]`)
-        if (script) {
-            window.google = undefined
-            script.remove()
-        }
+        this.maps.destroy()
     }
 }
 </script>
