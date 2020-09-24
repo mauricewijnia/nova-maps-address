@@ -24,8 +24,15 @@ let timeout;
 export default {
     mixins: [FormField, HandlesValidationErrors],
 
-    props: ['resourceName', 'resourceId', 'field', 'map', 'autocomplete', 'marker', 'src'],
-
+    props: ['resourceName', 'resourceId', 'field', 'src'],
+    data() {
+        return {
+            map: null,
+            autocomplete: null,
+            marker: null,
+            geocoder: null
+        }
+    },
     methods: {
         /*
          * Set the initial, internal value for the field.
@@ -48,6 +55,9 @@ export default {
             this.formatted = place.formatted_address
 
             this.setMarker(place.geometry.location)
+
+            this.map.panTo(position)
+            this.map.setZoom(12)
         },
         onInput(e) {
             this.reset()
@@ -96,9 +106,6 @@ export default {
                 animation: google.maps.Animation.DROP,
                 map: this.map,
             })
-
-            this.map.panTo(position)
-            this.map.setZoom(12)
         }
     },
     created() {
@@ -124,10 +131,28 @@ export default {
                 }
             )
 
+            this.map.addListener('click', (event) => {
+                if (!this.geocoder) {
+                    this.geocoder = new google.maps.Geocoder
+                }
+                this.setMarker(event.latLng)
+                this.geocoder.geocode({
+                    location: event.latLng
+                }, (data, status) => {
+                    const place = data[0]
+                    if (place && status == google.maps.places.PlacesServiceStatus.OK) {
+                        this.value = JSON.stringify(this.format(place))
+                        this.formatted = place.formatted_address
+
+                        this.setMarker(place.geometry.location)
+                    }
+                })
+            })
+
             const input = document.querySelector('.nova-maps-address-input')
 
             this.autocomplete = new google.maps.places.Autocomplete(input, {
-                types: ['address']
+                types: this.field.types
             })
 
             this.autocomplete.addListener('place_changed', this.onChange)

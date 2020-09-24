@@ -18,7 +18,7 @@ class MapsAddress extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->googleKey()->zoom(10)->center(['lat' => 52.370216, 'lng' => 4.895168]);
+        $this->googleKey()->zoom(10)->center(['lat' => 52.370216, 'lng' => 4.895168])->types([]);
     }
 
     /**
@@ -49,6 +49,10 @@ class MapsAddress extends Field
         }
 
         return $this->withMeta(['center' => $center]);
+    }
+
+    public function types(array $types) {
+        return $this->withMeta(['types' => $types]);
     }
 
     /**
