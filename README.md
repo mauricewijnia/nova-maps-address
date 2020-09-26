@@ -13,13 +13,13 @@ To install the field simply run:
 composer require mauricewijnia/nova-maps-address
 ```
 
-You will need a Google Maps API key with access to the Places API. You can place the key in your `.env` file like this:
+You will need a Google Maps API key with access to the Maps, Places and Geocoding API. You can place the key in your `.env` file like this:
 ```
-NOVA_MAPS_ADDRESS_KEY="you_key_here"
+NOVA_MAPS_ADDRESS_KEY="your_key_here"
 ```
 
 ## Usage
-This fields stores it's data as JSON in your column, so we will have to cast our column to an array.
+This fields stores its data as JSON in your column, so we will have to cast our column to an array.
 
 To add the field to your resource you can do:
 
@@ -60,12 +60,20 @@ The resulting data will have this format:
 
 ## Options
 
-You can change the default zoom and center options for the map.
+You can change some of the settings for the map by call the respective option method:
+
 ```php
 MapsAddress::make(__('Address'), 'address')
     ->zoom(5)
-    ->center(['lat' => 55.5, 'lng' => 5.5]);
+    ->center(['lat' => 55.5, 'lng' => 5.5])
+    ->types(['address' ,'establishment']);
 ```
+
+|Option|Description|Default|
+|------|-----------|-------|
+|zoom|Set the default zoom level of the map|10|
+|center|Set the initial centering point of the map|```['lat' => 52.370216, 'lng' => 4.895168]```|
+|types|Set the type of places that should be shown options are: establishment, address, geocode|```['address']```|
 
 
 
