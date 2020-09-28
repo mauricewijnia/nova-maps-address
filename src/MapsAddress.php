@@ -26,7 +26,7 @@ class MapsAddress extends Field
      */
     public function googleKey() {
         return $this->withMeta([
-            'googleKey' => env('NOVA_MAPS_ADDRESS_KEY')
+            'googleKey' => config('nova.maps-address-field.key')
         ]);
     }
 
