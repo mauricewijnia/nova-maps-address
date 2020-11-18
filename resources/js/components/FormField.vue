@@ -62,7 +62,10 @@ export default {
             key: this.field.googleKey,
             zoom: this.field.zoom,
             center: this.field.center,
-            types: this.field.types
+            types: this.field.types,
+            autoCompleteOptions: this.field.autoCompleteOptions,
+            scriptUrlParams: this.field.scriptUrlParams,
+            mapOptions: this.field.mapOptions
         });
 
         this.maps.on('change', (data) => {

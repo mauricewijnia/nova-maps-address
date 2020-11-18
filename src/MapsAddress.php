@@ -30,6 +30,20 @@ class MapsAddress extends Field
         ]);
     }
 
+    public function autoCompleteOptions(array $autoCompleteOptions){
+        return $this->withMeta(['autoCompleteOptions' => $autoCompleteOptions]);
+    }
+
+    public function scriptUrlParams(array $scriptUrlParams)
+    {
+        return $this->withMeta(['scriptUrlParams' => $scriptUrlParams]);
+    }
+
+    public function mapOptions(array $mapOptions)
+    {
+        return $this->withMeta(['mapOptions' => $mapOptions]);
+    }
+
     /**
      * @param int $zoom
      * @return MapsAddress

@@ -2,15 +2,7 @@ import AddressFormatter from './AddressFormatter'
 
 class Maps {
     constructor(settings) {
-        this.settings = {
-            input: settings.input,
-            container: settings.container,
-            value: settings.value,
-            zoom: settings.zoom,
-            center: settings.center,
-            types: settings.types,
-            key: settings.key,
-        }
+        this.settings = {...settings}
 
         this.events = {}
         this.map = null
@@ -50,12 +42,14 @@ class Maps {
                 mapTypeControl: false,
                 streetViewControl: false,
                 fullscreenControl: false,
+                ...this.settings.mapOptions,
             }
         )
 
         this.geocoder = new google.maps.Geocoder
         this.autocomplete = new google.maps.places.Autocomplete(this.settings.input, {
-            types: this.settings.types
+            types: this.settings.types,
+            ...this.settings.autoCompleteOptions,
         })
 
         this.map.addListener('click', this.onClick)
@@ -64,11 +58,19 @@ class Maps {
 
     appendScript() {
         this.script = document.createElement('script')
-        this.script.src = `https://maps.googleapis.com/maps/api/js?key=${this.settings.key}&libraries=places&callback=initMap`
+        const extraParams = this.settings.scriptUrlParams ? `&${this.getUrlParamsFromObj(this.settings.scriptUrlParams)}` : '';
+        this.script.src = `https://maps.googleapis.com/maps/api/js?key=${this.settings.key}&libraries=places&callback=initMap${extraParams}`
         this.script.id = 'nova-maps-address-script'
         this.script.defer = true
 
         document.head.appendChild(this.script);
+    }
+
+    getUrlParamsFromObj(params) {
+        console.log('get params', params);
+        return Object.keys(params)
+            .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+            .join('&');
     }
 
     onChange() {
