@@ -22,6 +22,15 @@ class MapsAddress extends Field
     }
 
     /**
+     * All options can be found at https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete 
+     * @param array $autoCompleteOptions 
+     * @return MapsAddress
+     */
+    public function autoCompleteOptions(array $autoCompleteOptions){
+        return $this->withMeta(['autoCompleteOptions' => $autoCompleteOptions]);
+    } 
+
+    /**
      * @return MapsAddress
      */
     public function googleKey() {
@@ -30,18 +39,24 @@ class MapsAddress extends Field
         ]);
     }
 
-    public function autoCompleteOptions(array $autoCompleteOptions){
-        return $this->withMeta(['autoCompleteOptions' => $autoCompleteOptions]);
-    }
-
-    public function scriptUrlParams(array $scriptUrlParams)
-    {
-        return $this->withMeta(['scriptUrlParams' => $scriptUrlParams]);
-    }
-
+    /**
+     * All options can be found at https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions
+     * @param array $mapOptions 
+     * @return MapsAddress 
+     */
     public function mapOptions(array $mapOptions)
     {
         return $this->withMeta(['mapOptions' => $mapOptions]);
+    }
+
+    /**
+     * All options can be found at https://developers.google.com/maps/documentation/javascript/url-params
+     * @param array $scriptUrlParams 
+     * @return $this 
+     */
+    public function scriptUrlParams(array $scriptUrlParams)
+    {
+        return $this->withMeta(['scriptUrlParams' => $scriptUrlParams]);
     }
 
     /**
