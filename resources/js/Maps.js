@@ -67,7 +67,6 @@ class Maps {
     }
 
     getUrlParamsFromObj(params) {
-        console.log('get params', params);
         return Object.keys(params)
             .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
             .join('&');
@@ -95,7 +94,8 @@ class Maps {
     onClick(data) {
         this.setMarker(data.latLng)
         this.geocoder.geocode({
-            location: data.latLng
+            location: data.latLng,
+            ...this.settings.geocodeOptions
         }, (data, status) => {
             const place = data[0]
             if (place && status === google.maps.places.PlacesServiceStatus.OK) {

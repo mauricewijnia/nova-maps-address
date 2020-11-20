@@ -69,11 +69,21 @@ MapsAddress::make(__('Address'), 'address')
     ->types(['address' ,'establishment']);
 ```
 
+You can also pass parameters to Map js request and all options available for map/autocomplete/geocoder class. For example to specify a language and regions and filter the components:
+
+```php
+MapsAddress::make(__('shop_admin.places.address'), 'address')->types([])
+                    ->scriptUrlParams(['region' => 'jp', 'language' => 'ja'])
+                    ->autoCompleteOptions(['componentRestrictions' => ['country' => ['jp']]])
+                    ->mapOptions(['componentRestrictions' => ['country' => ['jp']]])
+```
+
 |Option|Description|Default|
 |------|-----------|-------|
 |zoom|Set the default zoom level of the map|10|
 |center|Set the initial centering point of the map|```['lat' => 52.370216, 'lng' => 4.895168]```|
 |types|Set the type of places that should be shown options are: establishment, address, geocode|```['address']```|
-
-
-
+|autoCompleteOptions|Set options for AutoComplete class initialization. https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete|N/A |
+|geocodeOptions|Set options for Geocoder class initialization. https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest|N/A |
+|mapOptions|Set options for Map class initialization. https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions|N/A |
+|scriptUrlParams|Set parameters during the request of Google Map API js. https://developers.google.com/maps/documentation/javascript/url-params |N/A|

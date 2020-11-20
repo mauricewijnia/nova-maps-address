@@ -55,6 +55,16 @@ class MapsAddress extends Field
     }
 
     /**
+     * All options can be found at https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest
+     * @param array $geocodeOptions 
+     * @return MapsAddress 
+     */
+    public function geocodeOptions(array $geocodeOptions)
+    {
+        return $this->withMeta(['geocodeOptions' => $geocodeOptions]);
+    }
+
+    /**
      * @return MapsAddress
      */
     public function googleKey() {
