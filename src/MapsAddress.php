@@ -18,8 +18,17 @@ class MapsAddress extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->googleKey()->zoom(10)->center(['lat' => 52.370216, 'lng' => 4.895168])->types(['address']);
+        $this->googleKey()->zoom(10)->center(['lat' => 52.370216, 'lng' => 4.895168])->types(['address'])->allowMapClick(true);
     }
+
+    /**
+     * Allow user to click on map to get the address
+     * @param bool $allowMapClick 
+     * @return $this 
+     */
+    public function allowMapClick(bool $allowMapClick) {
+        return $this->withMeta(['allowMapClick' => $allowMapClick]);
+    } 
 
     /**
      * All options can be found at https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete 

@@ -52,7 +52,9 @@ class Maps {
             ...this.settings.autoCompleteOptions,
         })
 
-        this.map.addListener('click', this.onClick)
+        if(this.settings.allowMapClick) {
+            this.map.addListener('click', this.onClick)
+        }
         this.autocomplete.addListener('place_changed', this.onChange)
     }
 

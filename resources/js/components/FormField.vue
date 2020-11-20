@@ -65,7 +65,8 @@ export default {
             types: this.field.types,
             autoCompleteOptions: this.field.autoCompleteOptions,
             scriptUrlParams: this.field.scriptUrlParams,
-            mapOptions: this.field.mapOptions
+            mapOptions: this.field.mapOptions,
+            allowMapClick: this.field.allowMapClick
         });
 
         this.maps.on('change', (data) => {

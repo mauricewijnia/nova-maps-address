@@ -55,6 +55,7 @@ The resulting data will have this format:
     formatted_address: string,
     latitude: float,
     longitude: float
+    address_components: array // https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
 }
 ```
 
@@ -83,6 +84,7 @@ MapsAddress::make(__('shop_admin.places.address'), 'address')->types([])
 |zoom|Set the default zoom level of the map|10|
 |center|Set the initial centering point of the map|```['lat' => 52.370216, 'lng' => 4.895168]```|
 |types|Set the type of places that should be shown options are: establishment, address, geocode|```['address']```|
+|allowMapClick|Allow user to click on the map to get the address|true|
 |autoCompleteOptions|Set options for AutoComplete class initialization. https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete|N/A |
 |geocodeOptions|Set options for Geocoder class initialization. https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest|N/A |
 |mapOptions|Set options for Map class initialization. https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions|N/A |
