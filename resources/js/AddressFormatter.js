@@ -12,7 +12,8 @@ class AddressFormatter {
             country: this.extract(place.address_components, 'country'),
             formatted_address: place.formatted_address,
             latitude: place.geometry.location.lat(),
-            longitude: place.geometry.location.lng()
+            longitude: place.geometry.location.lng(),
+            address_components: place.address_components,
         }
     }
 
