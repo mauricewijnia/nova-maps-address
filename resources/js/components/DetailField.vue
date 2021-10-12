@@ -63,7 +63,9 @@ export default {
     },
 
     destroyed() {
-        this.maps.destroy()
+        if (this.field.value && this.field.value.formatted_address) {
+            this.maps.destroy()
+        }
     }
 }
 </script>
