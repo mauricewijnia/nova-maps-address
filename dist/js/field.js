@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -174,381 +174,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2);
-module.exports = __webpack_require__(20);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-Nova.booting(function (Vue, router, store) {
-  Vue.component('index-nova-maps-address', __webpack_require__(3));
-  Vue.component('detail-nova-maps-address', __webpack_require__(6));
-  Vue.component('form-nova-maps-address', __webpack_require__(9));
-});
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(4)
-/* template */
-var __vue_template__ = __webpack_require__(5)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/IndexField.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9e63f81a", Component.options)
-  } else {
-    hotAPI.reload("data-v-9e63f81a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['resourceName', 'field'],
-    methods: {
-        getValue: function getValue() {
-            if (this.field.value && this.field.value.formatted_address) {
-                return this.field.value.formatted_address;
-            }
-
-            return '-';
-        }
-    }
-});
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("span", [_vm._v(_vm._s(_vm.getValue()))])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9e63f81a", module.exports)
-  }
-}
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(26)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(7)
-/* template */
-var __vue_template__ = __webpack_require__(8)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/DetailField.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0224618e", Component.options)
-  } else {
-    hotAPI.reload("data-v-0224618e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Maps__ = __webpack_require__(17);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['resource', 'resourceName', 'resourceId', 'field'],
-
-    methods: {
-        getValue: function getValue() {
-
-            if (this.field.value && this.field.value.formatted_address) {
-                return this.field.value.formatted_address;
-            }
-
-            return '-';
-        },
-        setInitialValue: function setInitialValue() {
-            var address = this.field.value;
-            this.formatted = address ? address.formatted_address : '';
-            this.value = JSON.stringify(this.field.value) || '';
-        }
-    },
-
-    mounted: function mounted() {
-        this.setInitialValue();
-
-        this.maps = new __WEBPACK_IMPORTED_MODULE_0__Maps__["a" /* default */]({
-            input: this.$refs.input,
-            container: this.$refs.container,
-            value: this.field.value,
-            key: this.field.googleKey,
-            zoom: this.field.zoom,
-            center: this.field.center,
-            types: this.field.types,
-            autoCompleteOptions: this.field.autoCompleteOptions,
-            scriptUrlParams: this.field.scriptUrlParams,
-            mapOptions: this.field.mapOptions,
-            allowMapClick: false
-        });
-    }
-});
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "panel-item",
-    { attrs: { field: _vm.field } },
-    [
-      _c(
-        "template",
-        { slot: "value" },
-        [
-          _vm._v("\n        " + _vm._s(_vm.getValue()) + "\n        "),
-          this.field.showMapOnDetail
-            ? [
-                _c("input", {
-                  ref: "input",
-                  staticClass:
-                    "w-full form-control form-input form-input-bordered nova-maps-address-input hidden",
-                  class: _vm.errorClasses,
-                  attrs: {
-                    id: _vm.field.name,
-                    type: "text",
-                    placeholder: _vm.field.name
-                  },
-                  domProps: { value: this.formatted }
-                }),
-                _vm._v(" "),
-                _c("div", {
-                  ref: "container",
-                  attrs: { id: "nova-maps-address-container" }
-                })
-              ]
-            : _vm._e()
-        ],
-        2
-      )
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0224618e", module.exports)
-  }
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(10)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(15)
-/* template */
-var __vue_template__ = __webpack_require__(19)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/FormField.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c023248a", Component.options)
-  } else {
-    hotAPI.reload("data-v-c023248a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(11);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(13)("c9c9da74", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c023248a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormField.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c023248a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormField.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n#nova-maps-address-container {\r\n    height: 400px;\r\n    margin-top: 1rem;\r\n    border-width: 1px;\r\n    border-color: var(--60);\r\n    border-radius: .5rem;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports) {
 
 /*
@@ -630,7 +255,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 13 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -649,7 +274,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(14)
+var listToStyles = __webpack_require__(12)
 
 /*
 type StyleObject = {
@@ -858,7 +483,394 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 14 */
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddressFormatter__ = __webpack_require__(14);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Maps = function () {
+    function Maps(settings) {
+        var _this = this;
+
+        _classCallCheck(this, Maps);
+
+        this.settings = _extends({}, settings);
+
+        this.events = {};
+        this.map = null;
+        this.autocomplete = null;
+        this.geocoder = null;
+        this.formatter = new __WEBPACK_IMPORTED_MODULE_0__AddressFormatter__["a" /* default */]();
+
+        this.onClick = this.onClick.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onInput = this.onInput.bind(this);
+
+        this.settings.input.addEventListener('input', this.onInput);
+
+        window.initMap = function () {
+            _this.initializeServices();
+            _this.initializeAddress(_this.settings.value);
+        };
+        this.appendScript();
+    }
+
+    _createClass(Maps, [{
+        key: 'initializeAddress',
+        value: function initializeAddress(address) {
+            if (address && address.latitude && address.longitude) {
+                var location = { lat: address.latitude, lng: address.longitude };
+                this.setMarker(location);
+
+                this.map.panTo(location);
+                this.map.setZoom(12);
+            }
+        }
+    }, {
+        key: 'initializeServices',
+        value: function initializeServices() {
+            this.map = new google.maps.Map(document.getElementById('nova-maps-address-container'), _extends({
+                zoom: this.settings.zoom,
+                center: this.settings.center,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false
+            }, this.settings.mapOptions));
+
+            this.geocoder = new google.maps.Geocoder();
+            this.autocomplete = new google.maps.places.Autocomplete(this.settings.input, _extends({
+                types: this.settings.types
+            }, this.settings.autoCompleteOptions));
+
+            if (this.settings.allowMapClick) {
+                this.map.addListener('click', this.onClick);
+            }
+            this.autocomplete.addListener('place_changed', this.onChange);
+        }
+    }, {
+        key: 'appendScript',
+        value: function appendScript() {
+            this.script = document.createElement('script');
+            var extraParams = this.settings.scriptUrlParams ? '&' + this.getUrlParamsFromObj(this.settings.scriptUrlParams) : '';
+            this.script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.settings.key + '&libraries=places&callback=initMap' + extraParams;
+            this.script.id = 'nova-maps-address-script';
+            this.script.defer = true;
+
+            document.head.appendChild(this.script);
+        }
+    }, {
+        key: 'getUrlParamsFromObj',
+        value: function getUrlParamsFromObj(params) {
+            return Object.keys(params).map(function (key) {
+                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+            }).join('&');
+        }
+    }, {
+        key: 'onChange',
+        value: function onChange() {
+            var place = this.autocomplete.getPlace();
+
+            this.setMarker(place.geometry.location);
+
+            this.map.panTo(place.geometry.location);
+            this.map.setZoom(12);
+
+            this.emit('change', {
+                value: JSON.stringify(this.formatter.format(place)),
+                formatted: place.formatted_address
+            });
+        }
+    }, {
+        key: 'onInput',
+        value: function onInput(e) {
+            this.reset();
+            this.emit('change', { formatted: e.target.value });
+        }
+    }, {
+        key: 'onClick',
+        value: function onClick(data) {
+            var _this2 = this;
+
+            this.setMarker(data.latLng);
+            this.geocoder.geocode(_extends({
+                location: data.latLng
+            }, this.settings.geocodeOptions), function (data, status) {
+                var place = data[0];
+                if (place && status === google.maps.places.PlacesServiceStatus.OK) {
+                    _this2.setMarker(place.geometry.location);
+
+                    _this2.emit('change', {
+                        value: JSON.stringify(_this2.formatter.format(place)),
+                        formatted: place.formatted_address
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'reset',
+        value: function reset() {
+            this.emit('change', { value: null });
+
+            if (this.marker) {
+                this.marker.setMap(null);
+            }
+        }
+    }, {
+        key: 'setMarker',
+        value: function setMarker(position) {
+            if (this.marker) {
+                this.marker.setMap(null);
+            }
+
+            this.marker = new google.maps.Marker({
+                position: position,
+                animation: google.maps.Animation.DROP,
+                map: this.map
+            });
+        }
+    }, {
+        key: 'on',
+        value: function on(event, callback) {
+            if (!this.events[event]) {
+                this.events[event] = [];
+            }
+
+            this.events[event].push(callback);
+        }
+    }, {
+        key: 'emit',
+        value: function emit(event, data) {
+            if (!this.events[event]) {
+                return;
+            }
+
+            this.events[event].forEach(function (callback) {
+                return callback(data);
+            });
+        }
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            window.google = undefined;
+            this.script.remove();
+        }
+    }]);
+
+    return Maps;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Maps);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(5);
+module.exports = __webpack_require__(22);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+Nova.booting(function (Vue, router, store) {
+  Vue.component('index-nova-maps-address', __webpack_require__(6));
+  Vue.component('detail-nova-maps-address', __webpack_require__(9));
+  Vue.component('form-nova-maps-address', __webpack_require__(16));
+});
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(7)
+/* template */
+var __vue_template__ = __webpack_require__(8)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/IndexField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e63f81a", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e63f81a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['resourceName', 'field'],
+    methods: {
+        getValue: function getValue() {
+            if (this.field.value && this.field.value.formatted_address) {
+                return this.field.value.formatted_address;
+            }
+
+            return '-';
+        }
+    }
+});
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", [_vm._v(_vm._s(_vm.getValue()))])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9e63f81a", module.exports)
+  }
+}
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(10)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(13)
+/* template */
+var __vue_template__ = __webpack_require__(15)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DetailField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0224618e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0224618e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(11);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("3f186d3f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#nova-maps-address-container {\r\n    height: 400px;\r\n    margin-top: 1rem;\r\n    border-width: 1px;\r\n    border-color: var(--60);\r\n    border-radius: .5rem;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -891,14 +903,290 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Maps__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['resource', 'resourceName', 'resourceId', 'field'],
+
+    methods: {
+        getValue: function getValue() {
+
+            if (this.field.value && this.field.value.formatted_address) {
+                return this.field.value.formatted_address;
+            }
+
+            return '-';
+        },
+        setInitialValue: function setInitialValue() {
+            var address = this.field.value;
+            this.formatted = address ? address.formatted_address : '';
+            this.value = JSON.stringify(this.field.value) || '';
+        }
+    },
+
+    mounted: function mounted() {
+        this.setInitialValue();
+
+        if (this.field.value && this.field.value.formatted_address) {
+            this.maps = new __WEBPACK_IMPORTED_MODULE_0__Maps__["a" /* default */]({
+                input: this.$refs.input,
+                container: this.$refs.container,
+                value: this.field.value,
+                key: this.field.googleKey,
+                zoom: this.field.zoom,
+                center: this.field.center,
+                types: this.field.types,
+                autoCompleteOptions: this.field.autoCompleteOptions,
+                scriptUrlParams: this.field.scriptUrlParams,
+                mapOptions: this.field.mapOptions,
+                allowMapClick: false
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AddressFormatter = function () {
+    function AddressFormatter() {
+        _classCallCheck(this, AddressFormatter);
+    }
+
+    _createClass(AddressFormatter, [{
+        key: 'format',
+
+
+        /**
+         * Format a Google Maps place
+         */
+        value: function format(place) {
+            return {
+                street_name: this.extract(place.address_components, 'route'),
+                street_number: this.extract(place.address_components, 'street_number'),
+                postal_code: this.extract(place.address_components, 'postal_code'),
+                city: this.extract(place.address_components, 'locality'),
+                country: this.extract(place.address_components, 'country'),
+                formatted_address: place.formatted_address,
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng(),
+                address_components: place.address_components
+            };
+        }
+
+        /**
+         * Extract an address component from the components array
+         */
+
+    }, {
+        key: 'extract',
+        value: function extract(components, type) {
+            var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'long_name';
+
+            var result = null;
+            components.forEach(function (component) {
+                if (component.types.includes(type)) {
+                    result = component[format];
+                }
+            });
+            return result;
+        }
+    }]);
+
+    return AddressFormatter;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (AddressFormatter);
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "panel-item",
+    { attrs: { field: _vm.field } },
+    [
+      _c(
+        "template",
+        { slot: "value" },
+        [
+          _vm._v("\n        " + _vm._s(_vm.getValue()) + "\n        "),
+          this.field.showMapOnDetail
+            ? [
+                _c("input", {
+                  ref: "input",
+                  staticClass:
+                    "w-full form-control form-input form-input-bordered nova-maps-address-input hidden",
+                  class: _vm.errorClasses,
+                  attrs: {
+                    id: _vm.field.name,
+                    type: "text",
+                    placeholder: _vm.field.name
+                  },
+                  domProps: { value: this.formatted }
+                }),
+                _vm._v(" "),
+                _c("div", {
+                  ref: "container",
+                  attrs: { id: "nova-maps-address-container" }
+                })
+              ]
+            : _vm._e()
+        ],
+        2
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0224618e", module.exports)
+  }
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(17)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(19)
+/* template */
+var __vue_template__ = __webpack_require__(21)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/FormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c023248a", Component.options)
+  } else {
+    hotAPI.reload("data-v-c023248a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(18);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("c9c9da74", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c023248a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c023248a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#nova-maps-address-container {\r\n    height: 400px;\r\n    margin-top: 1rem;\r\n    border-width: 1px;\r\n    border-color: var(--60);\r\n    border-radius: .5rem;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_nova__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Maps__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Maps__ = __webpack_require__(3);
 //
 //
 //
@@ -985,7 +1273,7 @@ var timeout = void 0;
 });
 
 /***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -27319,253 +27607,7 @@ if (hadRuntime) {
 });
 
 /***/ }),
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddressFormatter__ = __webpack_require__(18);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
-
-var Maps = function () {
-    function Maps(settings) {
-        var _this = this;
-
-        _classCallCheck(this, Maps);
-
-        this.settings = _extends({}, settings);
-
-        this.events = {};
-        this.map = null;
-        this.autocomplete = null;
-        this.geocoder = null;
-        this.formatter = new __WEBPACK_IMPORTED_MODULE_0__AddressFormatter__["a" /* default */]();
-
-        this.onClick = this.onClick.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.onInput = this.onInput.bind(this);
-
-        this.settings.input.addEventListener('input', this.onInput);
-
-        window.initMap = function () {
-            _this.initializeServices();
-            _this.initializeAddress(_this.settings.value);
-        };
-        this.appendScript();
-    }
-
-    _createClass(Maps, [{
-        key: 'initializeAddress',
-        value: function initializeAddress(address) {
-            if (address && address.latitude && address.longitude) {
-                var location = { lat: address.latitude, lng: address.longitude };
-                this.setMarker(location);
-
-                this.map.panTo(location);
-                this.map.setZoom(12);
-            }
-        }
-    }, {
-        key: 'initializeServices',
-        value: function initializeServices() {
-            this.map = new google.maps.Map(document.getElementById('nova-maps-address-container'), _extends({
-                zoom: this.settings.zoom,
-                center: this.settings.center,
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false
-            }, this.settings.mapOptions));
-
-            this.geocoder = new google.maps.Geocoder();
-            this.autocomplete = new google.maps.places.Autocomplete(this.settings.input, _extends({
-                types: this.settings.types
-            }, this.settings.autoCompleteOptions));
-
-            if (this.settings.allowMapClick) {
-                this.map.addListener('click', this.onClick);
-            }
-            this.autocomplete.addListener('place_changed', this.onChange);
-        }
-    }, {
-        key: 'appendScript',
-        value: function appendScript() {
-            this.script = document.createElement('script');
-            var extraParams = this.settings.scriptUrlParams ? '&' + this.getUrlParamsFromObj(this.settings.scriptUrlParams) : '';
-            this.script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.settings.key + '&libraries=places&callback=initMap' + extraParams;
-            this.script.id = 'nova-maps-address-script';
-            this.script.defer = true;
-
-            document.head.appendChild(this.script);
-        }
-    }, {
-        key: 'getUrlParamsFromObj',
-        value: function getUrlParamsFromObj(params) {
-            return Object.keys(params).map(function (key) {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
-            }).join('&');
-        }
-    }, {
-        key: 'onChange',
-        value: function onChange() {
-            var place = this.autocomplete.getPlace();
-
-            this.setMarker(place.geometry.location);
-
-            this.map.panTo(place.geometry.location);
-            this.map.setZoom(12);
-
-            this.emit('change', {
-                value: JSON.stringify(this.formatter.format(place)),
-                formatted: place.formatted_address
-            });
-        }
-    }, {
-        key: 'onInput',
-        value: function onInput(e) {
-            this.reset();
-            this.emit('change', { formatted: e.target.value });
-        }
-    }, {
-        key: 'onClick',
-        value: function onClick(data) {
-            var _this2 = this;
-
-            this.setMarker(data.latLng);
-            this.geocoder.geocode(_extends({
-                location: data.latLng
-            }, this.settings.geocodeOptions), function (data, status) {
-                var place = data[0];
-                if (place && status === google.maps.places.PlacesServiceStatus.OK) {
-                    _this2.setMarker(place.geometry.location);
-
-                    _this2.emit('change', {
-                        value: JSON.stringify(_this2.formatter.format(place)),
-                        formatted: place.formatted_address
-                    });
-                }
-            });
-        }
-    }, {
-        key: 'reset',
-        value: function reset() {
-            this.emit('change', { value: null });
-
-            if (this.marker) {
-                this.marker.setMap(null);
-            }
-        }
-    }, {
-        key: 'setMarker',
-        value: function setMarker(position) {
-            if (this.marker) {
-                this.marker.setMap(null);
-            }
-
-            this.marker = new google.maps.Marker({
-                position: position,
-                animation: google.maps.Animation.DROP,
-                map: this.map
-            });
-        }
-    }, {
-        key: 'on',
-        value: function on(event, callback) {
-            if (!this.events[event]) {
-                this.events[event] = [];
-            }
-
-            this.events[event].push(callback);
-        }
-    }, {
-        key: 'emit',
-        value: function emit(event, data) {
-            if (!this.events[event]) {
-                return;
-            }
-
-            this.events[event].forEach(function (callback) {
-                return callback(data);
-            });
-        }
-    }, {
-        key: 'destroy',
-        value: function destroy() {
-            window.google = undefined;
-            this.script.remove();
-        }
-    }]);
-
-    return Maps;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Maps);
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var AddressFormatter = function () {
-    function AddressFormatter() {
-        _classCallCheck(this, AddressFormatter);
-    }
-
-    _createClass(AddressFormatter, [{
-        key: 'format',
-
-
-        /**
-         * Format a Google Maps place
-         */
-        value: function format(place) {
-            return {
-                street_name: this.extract(place.address_components, 'route'),
-                street_number: this.extract(place.address_components, 'street_number'),
-                postal_code: this.extract(place.address_components, 'postal_code'),
-                city: this.extract(place.address_components, 'locality'),
-                country: this.extract(place.address_components, 'country'),
-                formatted_address: place.formatted_address,
-                latitude: place.geometry.location.lat(),
-                longitude: place.geometry.location.lng(),
-                address_components: place.address_components
-            };
-        }
-
-        /**
-         * Extract an address component from the components array
-         */
-
-    }, {
-        key: 'extract',
-        value: function extract(components, type) {
-            var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'long_name';
-
-            var result = null;
-            components.forEach(function (component) {
-                if (component.types.includes(type)) {
-                    result = component[format];
-                }
-            });
-            return result;
-        }
-    }]);
-
-    return AddressFormatter;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (AddressFormatter);
-
-/***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -27622,55 +27664,10 @@ if (false) {
 }
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(27);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(13)("3f186d3f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n#nova-maps-address-container {\r\n    height: 400px;\r\n    margin-top: 1rem;\r\n    border-width: 1px;\r\n    border-color: var(--60);\r\n    border-radius: .5rem;\n}\r\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);
