@@ -25,7 +25,7 @@
 
                 <div class="flex w-1/2">
                     <div class="w-1/5 py-3 pl-2">
-                        <label class="inline-block text-80 pt-2 leading-tight">Lon</label>
+                        <label class="inline-block text-80 pt-2 leading-tight">Long</label>
                     </div>
                     <div class="py-3 w-4/5">
                     <input  type="number" step=any v-model="longitude"  @change="refreshMap" class="w-full form-control form-input form-input-bordered nova-maps-address-input">
