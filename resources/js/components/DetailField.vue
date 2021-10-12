@@ -60,6 +60,10 @@ export default {
                 allowMapClick: false
             });
         }
+    },
+
+    destroyed() {
+        this.maps.destroy()
     }
 }
 </script>

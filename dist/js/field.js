@@ -970,6 +970,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 allowMapClick: false
             });
         }
+    },
+    destroyed: function destroyed() {
+        this.maps.destroy();
     }
 });
 
