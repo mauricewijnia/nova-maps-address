@@ -114,4 +114,9 @@ class MapsAddress extends Field
     {
         return $this->withMeta(['zoom' => $zoom]);
     }
+
+    public function showMapOnDetail($value = true)
+    {
+        return $this->withMeta(['showMapOnDetail' => $value]);
+    }
 }
