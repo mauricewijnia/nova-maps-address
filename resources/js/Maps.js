@@ -89,8 +89,15 @@ class Maps {
     }
 
     onInput(e) {
-        this.reset()
-        this.emit('change', { formatted: e.target.value })
+        // this.reset()
+        // this.emit('change', { formatted: e.target.value })
+        
+        this.settings.value.formatted_address = e.target.value;
+
+        this.emit('updateFormatAddress', {
+            formatted: e.target.value,
+            value: JSON.stringify(this.settings.value)
+        })
     }
 
     onClick(data) {
