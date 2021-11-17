@@ -907,11 +907,6 @@ var timeout = void 0;
             _this.value = data.value;
             _this.formatted = data.formatted;
         });
-
-        this.maps.on('updateFormatAddress', function (data) {
-            _this.formatted = data.formatted;
-            _this.value = data.value;
-        });
     },
     destroyed: function destroyed() {
         this.maps.destroy();
@@ -27366,7 +27361,7 @@ var Maps = function () {
 
             this.settings.value.formatted_address = e.target.value;
 
-            this.emit('updateFormatAddress', {
+            this.emit('change', {
                 formatted: e.target.value,
                 value: JSON.stringify(this.settings.value)
             });
@@ -27384,8 +27379,10 @@ var Maps = function () {
                 if (place && status === google.maps.places.PlacesServiceStatus.OK) {
                     _this2.setMarker(place.geometry.location);
 
+                    _this2.settings.value = _this2.formatter.format(place);
+
                     _this2.emit('change', {
-                        value: JSON.stringify(_this2.formatter.format(place)),
+                        value: JSON.stringify(_this2.settings.value),
                         formatted: place.formatted_address
                     });
                 }

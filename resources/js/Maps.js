@@ -91,10 +91,10 @@ class Maps {
     onInput(e) {
         // this.reset()
         // this.emit('change', { formatted: e.target.value })
-        
-        this.settings.value.formatted_address = e.target.value;
 
-        this.emit('updateFormatAddress', {
+        this.settings.value.formatted_address = e.target.value;
+        
+        this.emit('change', {
             formatted: e.target.value,
             value: JSON.stringify(this.settings.value)
         })
@@ -109,9 +109,11 @@ class Maps {
             const place = data[0]
             if (place && status === google.maps.places.PlacesServiceStatus.OK) {
                 this.setMarker(place.geometry.location)
-
+                
+                this.settings.value = this.formatter.format(place)
+                
                 this.emit('change', {
-                    value: JSON.stringify(this.formatter.format(place)),
+                    value: JSON.stringify(this.settings.value),
                     formatted: place.formatted_address
                 })
             }
