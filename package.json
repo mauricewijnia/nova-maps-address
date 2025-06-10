@@ -20,5 +20,9 @@
     "sass": "^1.89.2",
     "sass-loader": "^12.6.0",
     "vue-loader": "^16.8.3"
+  },
+  "dependencies": {
+    "uid": "^2.0.2",
+    "vuex": "^4.1.0"
   }
 }
